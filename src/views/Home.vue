@@ -7,6 +7,7 @@ import { t } from '../i18n';
     <section class="hero-section">
       <h1 class="hero-title">{{ t('home_title') }}</h1>
       <p class="hero-subtitle">{{ t('home_subtitle') }}</p>
+      <p class="hero-disclaimer">{{ t('home_disclaimer') }}</p>
     </section>
 
     <section class="cards-grid">
@@ -66,7 +67,18 @@ import { t } from '../i18n';
 .hero-subtitle {
   font-size: 18px;
   color: var(--text);
-  margin: 0;
+  margin: 0 0 12px;
+}
+
+.hero-disclaimer {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .cards-grid {
