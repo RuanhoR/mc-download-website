@@ -8,6 +8,9 @@ import { t } from '../i18n';
       <p class="footer-line">{{ t('footer_built') }}</p>
       <p class="footer-line">{{ t('footer_mcbe_api') }}</p>
       <p class="footer-line">{{ t('footer_fcl_api') }}</p>
+      <p class="footer-line">
+        <a href="mailto:zcvb182a@163.com">{{ t('footer_contact') }}</a>
+      </p>
     </div>
   </footer>
 </template>

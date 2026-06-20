@@ -104,4 +104,5 @@ export type LocaleKey =
   | 'search_placeholder'
   | 'search_no_results'
   | 'home_disclaimer'
+  | 'footer_contact'
   | 'not_found';
