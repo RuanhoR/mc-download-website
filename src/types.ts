@@ -101,5 +101,7 @@ export type LocaleKey =
   | 'netease_title'
   | 'netease_desc'
   | 'netease_link'
+  | 'search_placeholder'
+  | 'search_no_results'
   | 'home_disclaimer'
   | 'not_found';

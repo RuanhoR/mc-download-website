@@ -8,6 +8,7 @@ import MCVersionCard from '../components/MCVersionCard.vue';
 const versions = ref<Version[]>([]);
 const loading = ref(true);
 const sortMode = ref<SortMode>('newest');
+const searchQuery = ref('');
 
 onMounted(async () => {
   try {
@@ -23,8 +24,14 @@ onMounted(async () => {
   }
 });
 
+const filtered = computed(() => {
+  if (!searchQuery.value) return versions.value;
+  const q = searchQuery.value.toLowerCase();
+  return versions.value.filter((v) => v.version.toLowerCase().includes(q));
+});
+
 const sorted = computed(() => {
-  const list = [...versions.value];
+  const list = [...filtered.value];
   switch (sortMode.value) {
     case 'beta_first':
       return list.sort((a, b) => Number(b.beta) - Number(a.beta) || new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -44,6 +51,12 @@ const sorted = computed(() => {
     </div>
 
     <div class="toolbar">
+      <input
+        v-model="searchQuery"
+        class="search-input"
+        :placeholder="t('search_placeholder')"
+        type="search"
+      />
       <select v-model="sortMode" class="sort-select">
         <option value="newest">{{ t('sort_newest') }}</option>
         <option value="beta_first">{{ t('sort_beta_first') }}</option>
@@ -52,7 +65,7 @@ const sorted = computed(() => {
     </div>
 
     <div v-if="loading" class="loading-state">{{ t('mcbe_loading_list') }}</div>
-
+    <div v-else-if="sorted.length === 0" class="loading-state">{{ t('search_no_results') }}</div>
     <div v-else class="versions-grid">
       <MCVersionCard
         v-for="v in sorted"
@@ -91,7 +104,32 @@ const sorted = computed(() => {
 }
 
 .toolbar {
+  display: flex;
+  gap: 12px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 14px;
+  outline: none;
+  font-family: var(--sans);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.search-input::placeholder {
+  color: var(--text);
+  opacity: 0.6;
 }
 
 .sort-select {
@@ -126,6 +164,12 @@ const sorted = computed(() => {
 @media (max-width: 640px) {
   .mcbe-page {
     padding: 24px 16px;
+  }
+  .toolbar {
+    flex-direction: column;
+  }
+  .search-input {
+    min-width: 0;
   }
   .versions-grid {
     grid-template-columns: 1fr;
