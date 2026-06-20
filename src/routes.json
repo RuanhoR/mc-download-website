@@ -1,0 +1,7 @@
+[
+  { "path": "/", "title": "Minecraft Downloads - MCBE, FCL, PCL", "changefreq": "weekly", "priority": "1.0" },
+  { "path": "/mcbe", "title": "Minecraft Bedrock Edition - All Versions", "changefreq": "daily", "priority": "0.9" },
+  { "path": "/fcl", "title": "Fold Craft Launcher - Downloads", "changefreq": "weekly", "priority": "0.8" },
+  { "path": "/pcl", "title": "Plain Craft Launcher - PCL", "changefreq": "monthly", "priority": "0.6" },
+  { "path": "/netease", "title": "Minecraft NetEase China Edition", "changefreq": "monthly", "priority": "0.5" }
+]
